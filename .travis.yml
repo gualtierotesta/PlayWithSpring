@@ -1,8 +1,5 @@
 language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk9
-  - openjdk8
+
 sudo: false
 
 jobs:
@@ -10,9 +7,13 @@ jobs:
     - stage: Event listeners
       before_script: cd event-listereners
       script: mvn clean verify
-    - stage: logging 1
+      jdk:
+        - oraclejdk8
+  - openjdk8    - stage: logging 1
       before script: cd logging1
       script: mvn clean verify
+      jdk:
+        - oraclejdk8
 
 notifications:
   email:
