@@ -2,12 +2,18 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk9
-  - oraclejdk10
   - openjdk8
-  - openjdk9
-  - openjdk10
 sudo: false
-script: mvn clean verify
+
+jobs:
+  include:
+    - stage: Event listeners
+      before_script: cd event-listereners
+      script: mvn clean verify
+    - stage: logging 1
+      before script: cd logging1
+      script: mvn clean verify
+
 notifications:
   email:
     on_success: change
