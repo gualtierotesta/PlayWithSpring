@@ -7,13 +7,9 @@ jobs:
     - stage: Event listeners
       before_script: cd event-listereners
       script: mvn clean verify
-      jdk:
-        - oraclejdk8
     - stage: logging 1
       before script: cd logging1
       script: mvn clean verify
-      jdk:
-        - oraclejdk8
 
 notifications:
   email:
