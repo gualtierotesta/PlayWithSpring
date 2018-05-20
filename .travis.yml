@@ -6,10 +6,8 @@ jobs:
   include:
     - stage: Event listeners
       before_script: cd event-listeners
-      script: mvn clean verify
     - stage: logging 1
       before script: cd logging1
-      script: mvn clean verify
 
 notifications:
   email:
