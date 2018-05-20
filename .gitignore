@@ -1,23 +1,42 @@
+### GENERAL
 *~
 *.class
-.classpath
 *.ctxt
-dist
-*.ear
 hs_err_pid*
-.idea
-*.iml
-*.jar
 *.log
 .mtj.tmp/
-nb*
-nbproject
-nb-*.xml
-nb*.xml
-.project
 *.rar
-.settings
-target
 *.tar.gz
-*.war
 *.zip
+
+### MAVEN
+target
+
+### GRADLE
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### ECLIPSE ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
