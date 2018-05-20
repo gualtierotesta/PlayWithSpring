@@ -9,7 +9,7 @@ jobs:
       script: mvn clean verify
       jdk:
         - oraclejdk8
-  - openjdk8    - stage: logging 1
+    - stage: logging 1
       before script: cd logging1
       script: mvn clean verify
       jdk:
