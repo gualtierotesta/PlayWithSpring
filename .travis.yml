@@ -1,12 +1,28 @@
-language: java
 
 sudo: false
+
+before_install:
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+
+matrix:
+  include:
+    # Java 10 "Oracle JDK" (not yet provided by Travis CI)
+    - env: JDK='Oracle JDK 10'
+      install: . ./install-jdk.sh -F 10 -L BCL
+    # Java 10 "OpenJDK"
+    - env: JDK='OpenJDK 10' JACOCO='-PenableJaCoCo'
+      install: . ./install-jdk.sh -F 10 -L GPL
+    # Java 11 "Oracle JDK"
+    - env: JDK='Oracle JDK 11'
+      install: . ./install-jdk.sh -F 11 -L BCL
 
 jobs:
   include:
     - stage: Event listeners
+      language: java
       before_script: cd event-listeners
     - stage: logging 1
+      language: java
       before script: cd logging1
 
 notifications:
