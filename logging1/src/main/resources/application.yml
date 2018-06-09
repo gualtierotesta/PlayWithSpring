@@ -3,3 +3,25 @@ logging:
     org.springframework.web: INFO
     org.hibernate: WARN
     it.gualtierotesta: TRACE
+  ##file: myapp.log
+  file: /tmp/myapp.log
+
+## Default: no log file, just console
+
+## logging.file and logging.path properties control the other cases
+
+## Case 1 logging.file property with name without dir (relative position)
+## log file will be created with the specified name in the running dir
+## Ex. logging.file: myapp.log
+## Log file will be <running-dir>/myapp.log
+
+## Case 2 logging.file property specified with file and dir names (absolute position)
+## log file will be created with the specified name in the specified dir
+## Ex. logging.file: /tmp/myapp.log
+## Log file will be /tmp/myapp.log
+
+## Case 3 logging.path
+## log file will be created in the specified dir with "spring.log" as name
+## Ex. logging.path: /tmp
+## Log file will be /tmp/spring.log
+
