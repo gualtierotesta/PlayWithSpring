@@ -1,5 +1,7 @@
 package it.gualtierotesta.playwithspring.restapi.service;
 
+import lombok.ToString;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
@@ -7,7 +9,7 @@ import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-
+@ToString
 public class ServiceResult<T> {
 
     private final T data;
@@ -45,13 +47,4 @@ public class ServiceResult<T> {
         }
     }
 
-
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", ServiceResult.class.getSimpleName() + "[", "]")
-                .add("data=" + data)
-                .add("success=" + success)
-                .toString();
-    }
 }

@@ -4,6 +4,7 @@ import com.google.common.base.CharMatcher;
 import it.gualtierotesta.playwithspring.restapi.dto.Book;
 import it.gualtierotesta.playwithspring.restapi.service.BookService;
 import it.gualtierotesta.playwithspring.restapi.service.ServiceResult;
+import it.gualtierotesta.playwithspring.restapi.type.BookId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,21 +43,15 @@ public class BooksController {
             return ResponseEntity.status(BAD_REQUEST).build();
         }
 
-        log.info("invoked: bookId={}", bookId);
         ServiceResult<Book> serviceResult = service.findBookById(bookId);
 
-        if (serviceResult.isSuccess()) {
-            return ResponseEntity.ok(RestResult.success(serviceResult.data()));
-        } else {
-            return ResponseEntity.ok(RestResult.failure(9, "Could not process request"));
-        }
+        return serviceResult.isSuccess() ?
+                ResponseEntity.ok(RestResult.success(serviceResult.data())) :
+                ResponseEntity.ok(RestResult.failure(9, "Could not process request"));
     }
 
     private boolean requestIsNotValid(final String bookId) {
-        // bookId should be a number greater than 0
-        String onlyDigits = CharMatcher.inRange('0', '9').retainFrom(bookId);
-        return !onlyDigits.equals(bookId) ||
-                Integer.valueOf(onlyDigits) <= 0;
+        return !BookId.isValid(bookId);
     }
 
     private boolean requestNotAuthorized(final Authentication authentication) {
