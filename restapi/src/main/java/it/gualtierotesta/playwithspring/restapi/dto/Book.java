@@ -1,17 +1,25 @@
 package it.gualtierotesta.playwithspring.restapi.dto;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-@Value
-@Builder
+@Data
 public class Book {
 
     private String id;
+
+    @NotNull
+    @Size(min = 3, max=255)
     private String title;
+
+    @NotNull
+    @Size(min=2, max=255)
     private String author;
+
+    @PastOrPresent
     private LocalDate publishingDate;
 }

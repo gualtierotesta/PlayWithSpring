@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BooksController.class)
-public class BooksControllerTest {
+public class BooksControllerGetTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,12 +32,13 @@ public class BooksControllerTest {
     public void testGetById_HappyPath() throws Exception {
         String bookId = "123";
         given(service.findBookById(bookId))
-                .willReturn(ServiceResult.success(Book.builder().author("Gualtiero").build()));
+                .willReturn(ServiceResult.success(createBook()));
 
         mockMvc.perform(get("/books/" + bookId))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{ 'payload' : {'author':'Gualtiero'}}"));
     }
+
 
     @Test
     @WithMockUser(username = "testuser", password = "testpass")
@@ -69,5 +70,11 @@ public class BooksControllerTest {
 
         mockMvc.perform(get("/books/x123x")).andExpect(status().isBadRequest());
         mockMvc.perform(get("/books/0")).andExpect(status().isBadRequest());
+    }
+
+    private Book createBook() {
+        Book book = new Book();
+        book.setAuthor("Gualtiero");
+        return book;
     }
 }
