@@ -6,15 +6,11 @@ before_install:
 
 matrix:
   include:
-    # Java 10 "Oracle JDK" (not yet provided by Travis CI)
-    - env: JDK='Oracle JDK 10'
-      install: . ./install-jdk.sh -F 10 -L BCL
-    # Java 10 "OpenJDK"
-    - env: JDK='OpenJDK 10' JACOCO='-PenableJaCoCo'
-      install: . ./install-jdk.sh -F 10 -L GPL
+    -  env: JDK=adoptopenjdk11 + OpenJ9
+       script: source ./install-jdk.sh --url 'https://api.adoptopenjdk.net/v2/binary/releases/openjdk11?openjdk_impl=openj9&os=linux&arch=x64&release=latest&heap_size=normal&type=jdk'
     # Java 11 "Oracle JDK"
-    - env: JDK='Oracle JDK 11'
-      install: . ./install-jdk.sh -F 11 -L BCL
+    # - env: JDK='Oracle JDK 11'
+    #  install: . ./install-jdk.sh -F 11 -L BCL
 
 jobs:
   include:
